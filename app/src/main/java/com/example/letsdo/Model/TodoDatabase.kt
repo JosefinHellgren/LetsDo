@@ -17,9 +17,11 @@ abstract class TodoDatabase: RoomDatabase() {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    TodoDatbase::class.java,
-                   TodoDatabase
-                ).build
+                    TodoDatabase::class.java,
+                   "todo_database"
+                ).build()
+                INSTANCE = instance
+                instance
             }
 
         }
