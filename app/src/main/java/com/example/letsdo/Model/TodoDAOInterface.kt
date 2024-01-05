@@ -17,13 +17,13 @@ interface TodoDAOInterface {
     suspend fun delete(todo: Todo)
 
    @Query("SELECT* from todo_table")
-   suspend fun getAllTodos(): LiveData<List<Todo>>
+   fun getAllTodos(): LiveData<List<Todo>>
 
    @Query("SELECT * from todo_table WHERE category = 'Feelgood' ")
-   suspend fun getFeelGoodTodos(): LiveData<List<Todo>>
+   fun getFeelGoodTodos(): LiveData<List<Todo>>
 
     @Query("SELECT * from todo_table WHERE category = 'Should' ")
-    suspend fun getShouldTodos(): LiveData<List<Todo>>
+    fun getShouldTodos(): LiveData<List<Todo>>
 
     @Query("UPDATE todo_table set title = :title, note = :note where id = :id")
     suspend fun updateTitleAndNote(id: Int?, title: String?, note: String?)
