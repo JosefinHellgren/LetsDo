@@ -15,5 +15,6 @@ data class Todo(
     @ColumnInfo(name = "note") val note: String?,
     @ColumnInfo(name = "category") val category: Categorys?,
     @ColumnInfo(name = "review") val review: String?,
-    @ColumnInfo(name = "motivated") val motivated: Int?
+    @ColumnInfo(name = "motivated") val motivated: Int?,
+    @ColumnInfo(name = "done") val done: Boolean?
 ): java.io.Serializable

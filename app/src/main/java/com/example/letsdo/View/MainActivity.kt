@@ -1,4 +1,4 @@
-package com.example.letsdo
+package com.example.letsdo.View
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

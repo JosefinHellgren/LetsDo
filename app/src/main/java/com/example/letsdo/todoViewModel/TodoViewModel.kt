@@ -16,12 +16,14 @@ class TodoViewModel(application: Application): ViewModel() {
     val allTodo: LiveData<List<Todo>>
     val feelgoodTodos: LiveData<List<Todo>>
     val shouldTodos: LiveData<List<Todo>>
+    val doneTodos: LiveData<List<Todo>>
     init {
         val dao = TodoDatabase.getDatabase(application).getTodoDao()
         todoRepository = TodoRepository(dao)
         allTodo = todoRepository.allTodos
         feelgoodTodos = todoRepository.feelgoodTodos
         shouldTodos = todoRepository.shouldTodos
+        doneTodos = todoRepository.doneTodos
     }
 
     fun insertTodo(todo: Todo) = viewModelScope.launch(Dispatchers.IO){
@@ -38,5 +40,9 @@ class TodoViewModel(application: Application): ViewModel() {
 
     fun addReview(todo: Todo) = viewModelScope.launch(Dispatchers.IO) {
         todoRepository.addReview(todo.id,todo.review)
+    }
+
+    fun updateDone(todo: Todo) = viewModelScope.launch(Dispatchers.IO) {
+        todoRepository.updateDone(todo.id,todo.done)
     }
 }
