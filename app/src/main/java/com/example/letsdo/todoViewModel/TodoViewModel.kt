@@ -34,12 +34,18 @@ class TodoViewModel(application: Application): ViewModel() {
         todoRepository.deleteTodo(todo)
     }
 
-    fun updateTitleAndNote(todo: Todo) = viewModelScope.launch(Dispatchers.IO) {
-        todoRepository.updateTitleAndNote(todo.title, todo.note, todo.id)
+    fun updateTitleAndNote(title: String?, note: String?, id: Int) = viewModelScope.launch(Dispatchers.IO) {
+
+        if (title != null && note != null) {
+            todoRepository.updateTitleAndNote(id, note, title)
+        } else {
+            // Handle the case where either title or note is null
+            // You might want to log an error, show a message, or take appropriate action
+        }
     }
 
-    fun addReview(todo: Todo) = viewModelScope.launch(Dispatchers.IO) {
-        todoRepository.addReview(todo.id,todo.review)
+    fun addReview(review: String, id: Int) = viewModelScope.launch(Dispatchers.IO) {
+        todoRepository.addReview(id,review)
     }
 
     fun updateDone(todo: Todo) = viewModelScope.launch(Dispatchers.IO) {

@@ -4,6 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 @Database(entities = arrayOf(Todo::class), version = 1)
 abstract class TodoDatabase: RoomDatabase() {
@@ -19,11 +22,14 @@ abstract class TodoDatabase: RoomDatabase() {
                     context.applicationContext,
                     TodoDatabase::class.java,
                    "todo_database"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }
 
         }
+
      }
 }

@@ -19,15 +19,16 @@ class TodoRepository(
         todoDAOInterface.delete(todo)
     }
 
-    suspend fun updateTitleAndNote(title: String?,note: String?,id: Int?) {
-        todoDAOInterface.updateTitleAndNote(id,note,title)
-    }
-
     suspend fun addReview(id: Int? ,review: String?) {
         todoDAOInterface.addReview(id, review)
     }
+    suspend fun updateTitleAndNote(id: Int?, title: String?, note: String?) {
+        todoDAOInterface.updateTitleAndNote(id, title, note)
+    }
 
     suspend fun updateDone(id: Int?, done: Boolean?) {
-        todoDAOInterface.toggleDone(id,done)
+        todoDAOInterface.toggleDone(id, done)
     }
+
+
 }

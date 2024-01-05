@@ -19,14 +19,14 @@ interface TodoDAOInterface {
    @Query("SELECT* from todo_table")
    fun getAllTodos(): LiveData<List<Todo>>
 
-   @Query("SELECT * from todo_table WHERE category = 'Feelgood' ")
-   fun getFeelGoodTodos(): LiveData<List<Todo>>
+    @Query("SELECT * FROM todo_table WHERE category = :feelgoodCategory")
+    fun getFeelGoodTodos(feelgoodCategory: Categories = Categories.Feelgood): LiveData<List<Todo>>
 
     @Query("SELECT * from todo_table WHERE done = true ")
     fun getDoneTodos(): LiveData<List<Todo>>
 
-    @Query("SELECT * from todo_table WHERE category = 'Should' ")
-    fun getShouldTodos(): LiveData<List<Todo>>
+    @Query("SELECT * FROM todo_table WHERE category = :shouldCategory")
+    fun getShouldTodos(shouldCategory: Categories = Categories.Should): LiveData<List<Todo>>
 
     @Query("UPDATE todo_table set title = :title, note = :note where id = :id")
     suspend fun updateTitleAndNote(id: Int?, title: String?, note: String?)
